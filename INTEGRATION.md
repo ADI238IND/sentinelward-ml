@@ -65,3 +65,10 @@ decision policy.
 See `results/benchmark_results.md` and the model cards for measured offline
 performance and its limitations. The original notebooks contain training and
 test provenance.
+
+
+## Current integration status (16 October 2026)
+
+The [complete updated handoff](SentinelWard_M1-M4_M6_D_integration_handoff_20261016.zip) includes the M6 batch monitor, the D research engine, a fail-closed live-contract bridge, and safety tests. Read the [model-by-model readiness checklist](results/REMAINING_WORK.md). M5 and the lead's live-system repository have not been supplied, so a validated six-model ward verdict is not available.
+
+`build_research_verdict` checks bed/window alignment and score meanings against the locked v1.1 message shape. Its timestamps are Unix epoch milliseconds. Missing scores remain `null`; a monitor alarm still produces `EMERGENCY`, while the absence of an alarm produces `UNSURE`, never `NORMAL`. M5 and M6 per-bed scores are rejected. The bridge is for a dry run only and does not publish to the live verdict topic or replace a trained, calibrated decision layer.
