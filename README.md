@@ -27,3 +27,9 @@ The reported splits are record-disjoint. Record IDs alone do not establish that 
 - The M2 notebook installs `wfdb==4.3.1` before loading test waveforms. Archive verification and checksum assertions are embedded in the audit workflow.
 - Do not run the held-out test cell repeatedly to make development decisions. For changes, use a new development protocol and report the previous test exposure.
 
+# Integration
+
+The four saved research artifacts have callable, checksum-verified adapters.
+See [INTEGRATION.md](INTEGRATION.md) for installation, waveform contracts,
+example calls, and the remaining decision/fusion work.
+

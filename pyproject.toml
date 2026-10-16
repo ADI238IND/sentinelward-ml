@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sentinelward-ml"
+version = "0.1.0"
+description = "Offline research inference adapters for four SentinelWard models"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "numpy>=2.1,<3",
+  "scipy>=1.16,<2",
+  "pandas>=2.2,<3",
+  "scikit-learn==1.6.1",
+  "joblib>=1.4,<2",
+  "cloudpickle>=3,<4",
+  "torch>=2.7,<3",
+]
+
+[tool.setuptools.packages.find]
+include = ["sentinelward_ml*"]
