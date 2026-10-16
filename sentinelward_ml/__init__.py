@@ -1,5 +1,16 @@
-"""Research inference adapters for the four SentinelWard artifacts."""
+"""Research inference adapters and a conservative live-contract bridge."""
 
-from .inference import SentinelWardModels
+__all__ = ["SentinelWardModels", "SentinelWardDriftMonitor", "build_research_verdict"]
 
-__all__ = ["SentinelWardModels"]
+
+def __getattr__(name):
+    if name == "SentinelWardModels":
+        from .inference import SentinelWardModels
+        return SentinelWardModels
+    if name == "SentinelWardDriftMonitor":
+        from .drift import SentinelWardDriftMonitor
+        return SentinelWardDriftMonitor
+    if name == "build_research_verdict":
+        from .live_contract import build_research_verdict
+        return build_research_verdict
+    raise AttributeError(name)
