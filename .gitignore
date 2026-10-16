@@ -9,6 +9,7 @@ checkpoints/
 *.npy
 *.pt
 *.pth
+!models/*.pt
 *.mat
 *.dat
 *.raw
