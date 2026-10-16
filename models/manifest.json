@@ -1,0 +1,15 @@
+{
+  "status": "research artifacts; not deployment ready",
+  "models": {
+    "M1": {"file": "m1_five_seed_models.joblib", "sha256": "3977cbe18a8c087658ae7647445c65cbe1a0ca823ec6e46e9fc158d8cd60f8c1", "seeds": 5},
+    "M2": {"files": {
+      "m2_seed20261015.pt": "c14f0545baa7384bea323dc19f7f5f7c378eecde86bdd4196402f4788b9cfdef",
+      "m2_seed20261016.pt": "63b373c19b75d417d109003e52dca3b08be675133a2d0a0dcdef7c47f8cc2423",
+      "m2_seed20261017.pt": "549b3fef10fbe9fb8023a60feef5624440ac77b7edc4481ff4a7ceac41163d15",
+      "m2_seed20261018.pt": "51efe2f9bfc7679f545054d772d496a3c32f1ac7b0013bb0c38ffa9e0e281518",
+      "m2_seed20261019.pt": "bae91cc953f39ab69b6fd0cf96993269eefceb65f75401734b458a5ba00da63f"
+    }, "seeds": 5},
+    "M3": {"file": "m3_supervised_22.joblib", "sha256": "13795cd2c3fa414628e165b7ee92115e7eec93eb441a3791abf92d789a0edcf8", "threshold": 0.33261557242722967},
+    "M4": {"file": "sentinelward_model4_v3.pkl", "sha256": "48de790feb093f7ec98eb0c595b516f144a2361be408c43b00d41b75243d9581", "threshold": 0.9338677094352905, "sampling_rate_hz": 250, "samples_per_window": 2500}
+  }
+}
