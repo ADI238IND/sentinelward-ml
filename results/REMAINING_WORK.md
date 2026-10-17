@@ -1,4 +1,4 @@
-# Model-by-model readiness and remaining evidence — 16 October 2026
+# Model-by-model readiness and remaining evidence — 17 October 2026
 
 This is a research handoff, not a claim of clinical or security readiness. The
 original monitor alarm must remain visible regardless of any model output.
@@ -9,7 +9,7 @@ original monitor alarm must remain visible regardless of any model output.
 | M2, VT alarm | Saved five-seed 250 Hz ECG/PPG VT classifier, frozen test and checked adapter. Mean test VT recall 0.9109; false-alarm specificity 0.7594. | Validate threshold and alarm timing on the target ward. Two of five seeds fell below 0.90 recall on the frozen test. Non-VT emergencies require other monitor logic or separately trained models; M2 cannot stand for all medical emergencies. |
 | M3, attack windows | Saved synthetic attack-window classifier and feature adapter for already-preprocessed 125 Hz windows. | Package and verify the pinned raw-to-125 Hz transformation; test real body/sensor mismatch examples across devices and people. Synthetic attack accuracy does not establish clinical body-mismatch detection. |
 | M4, replay similarity | Saved offline pairwise replay-similarity model and checked adapter. | Verify raw source channels and implement a defensible trusted reference-window lifecycle. Study off-grid/noisy and unseen-device replay; the supplied off-grid noisy test found 7/12. Do not treat a match as conclusive attack evidence. |
-| M5, network model | Reserved as `null` in the six-score interface. | Cybersecurity teammate must supply the model package, positive-class definition, input schema, artifact provenance, validation and live device-identity integration. User confirmed it is not yet available. |
+| M5, network model | Kartik's separate public repository has feature extraction, a saved random-forest baseline, event schema and local tests. The source commit and artifact hash are pinned in `M5_EXTERNAL_REVIEW.md`. A new adapter validates asynchronous M5 event identity, freshness and score shape. | The model was trained/tested only on strongly separable synthetic traffic; its reported 330/330 test decisions are not real-network accuracy. Normal synthetic traffic is 2 Hz while the locked vitals stream is 1 Hz. Obtain representative target traffic, independent labels, realistic grouped evaluation, authenticated device-to-bed mapping and timing alignment. M5 remains `null` in the per-window verdict until those are validated. |
 | M6, waveform drift | Original supplied batch monitor plus SHA-256-checked wrapper. Source cache policy says `[ECG, PLETH]`, 250 Hz, 290–300 s; valid samples use a separate mask. | Independently verify actual cache samples/header mapping and target-domain drift behavior. The current monitor requires at least 48 windows and has no validated per-bed, five-second score. Its tiny synthetic batch experiment is not clinical accuracy. |
 | D, decision engine | Original M1–M4 research rule engine retained; new schema-shaped fail-closed bridge validates bed/window/target/score provenance and preserves monitor alarms. | The lead must supply the live-system repository, M5 package, authenticated timestamps and sequence, then train/calibrate and evaluate the six-model policy on independently labelled full-ward replays. Current D has illustrative thresholds and no validated NORMAL/TAMPERING/BOTH inference. |
 
@@ -20,6 +20,12 @@ of every decoded waveform or proof that live channel order is the same.
 
 ## Verification in this repository
 
+`python -m sentinelward_ml.verify` checks SHA-256 for all 31 packaged model and
+component files without loading pickle/joblib objects. `tests/test_windows.py`
+checks 125 Hz chunk assembly, five-second hopping, missing values, gaps,
+duplicate sequence numbers, device changes, reset and alarm retention.
+`examples/live_dry_run.py` exercises one synthetic bed from vitals to verdict
+without representing clinical performance.
 `tests/test_live_contract.py` checks missing-score behavior, alarm preservation,
 positive-class and bed/window alignment, invalid scores, unsupported M5/M6
 per-bed claims, and stale/off-grid windows. These tests verify code invariants,
