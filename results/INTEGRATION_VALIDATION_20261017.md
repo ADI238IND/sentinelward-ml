@@ -17,9 +17,14 @@ suppressed by a security or quality score.
   joblib 1.6.0, and cloudpickle 3.1.2.
 - After that package check, the vitals window builder was fixed to snapshot
   validated input samples. The expanded local standard-library suite passed
-  **21** tests, including input-buffer mutation and two interleaved beds. The
-  rebuilt archive must be checked with the complete scientific suite again
-  after publication.
+  **21** tests, including input-buffer mutation and two interleaved beds.
+- The rebuilt, public **65-file** archive at commit
+  `fcc1704b6292b6e84e72e92023f042a0384a4f90` matched SHA-256
+  `035fa79499727a1b1996efecfc6a1dc82bc81e9e21865994a86687bbcf1c34cb`
+  and passed ZIP CRC. Its complete suite then passed **30/30 tests** in an
+  isolated Python process (3.991 s test time, exit code 0). This final run
+  supersedes the earlier 28-test result. The archive contains the report as it
+  stood before this final test; this public page records the later result.
 
 These checks prove that the packaged code runs on the tested environment and
 that the specified interface invariants hold. They do **not** remeasure
