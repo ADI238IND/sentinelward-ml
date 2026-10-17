@@ -19,8 +19,10 @@ def _samples(message, name):
         return None
     if not isinstance(values, list) or len(values) != 125:
         raise ValueError(f"{name} must be null or 125 samples")
+    validated = []
     for item in values:
         if item is None:
+            validated.append(None)
             continue
         if isinstance(item, (bool, str, bytes)):
             raise ValueError(f"{name} contains a nonnumeric sample")
@@ -30,7 +32,10 @@ def _samples(message, name):
             raise ValueError(f"{name} contains a nonnumeric sample") from exc
         if not isfinite(number):
             raise ValueError(f"{name} contains a nonfinite sample")
-    return values
+        validated.append(number)
+    # Snapshot the validated numbers: callers may reuse or mutate their input
+    # buffer after ingest, but that must not alter a pending clinical window.
+    return validated
 
 
 def _alarm(value):
@@ -59,7 +64,8 @@ class VitalsWindowAssembler:
         self._beds.clear()
 
     def ingest(self, message):
-        if not isinstance(message, dict) or message.get("v") != 1 or message.get("type") != "vitals":
+        if (not isinstance(message, dict) or type(message.get("v")) is not int
+                or message["v"] != 1 or message.get("type") != "vitals"):
             raise ValueError("Expected v1 vitals message")
         bed = message.get("bed_id")
         device = message.get("device_id")
