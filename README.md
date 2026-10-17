@@ -1,5 +1,8 @@
 # SentinelWard ML research handoff
 
+The [M6 blood-pressure research adapter and synthetic twelve-bed replay](results/M6_BP_RESEARCH.md) are now runnable locally. They generate ART/NIBP evidence while deliberately withholding a calibrated M6 score. The [replay source](examples/twelve_bed_bp_replay.py) and [synthetic result](results/twelve_bed_bp_replay_synthetic.json) do not replace a labelled live-ward replay or complete the lead-specified M6.
+
+
 **Critical M6 correction:** The bundled M6 artifact monitors batch ECG–PPG distribution shift. It does **not** implement the arterial blood-pressure drift detector in the [lead’s M6 design](https://github.com/adityavijay3659-sketch/SentinelWard/blob/main/docs/m6-design.md): it has no ART/NIBP inputs or per-bed five-second score. Treat it as an exploratory waveform monitor, not a live M6 component or an input to the six-model verdict. See the [integration validation report](results/INTEGRATION_VALIDATION_20261017.md) for the model-by-model release gates.
 
 
