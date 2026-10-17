@@ -1,1 +1,32 @@
+name: Research protocol invariants
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/protocol-invariants.yml
+      - sentinelward_ml/windows.py
+      - sentinelward_ml/live_contract.py
+      - sentinelward_ml/m5_external.py
+      - examples/live_dry_run.py
+      - tests/test_windows.py
+      - tests/test_live_contract.py
+      - tests/test_m5_external.py
+      - tests/test_twelve_bed_replay.py
+  workflow_dispatch:
+
+jobs:
+  protocol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Check schema, fail-closed verdicts, and twelve-bed replay
+        run: |
+          python -m unittest discover -s tests -p test_windows.py -v
+          python -m unittest discover -s tests -p test_live_contract.py -v
+          python -m unittest discover -s tests -p test_m5_external.py -v
+          python -m unittest discover -s tests -p test_twelve_bed_replay.py -v
 
