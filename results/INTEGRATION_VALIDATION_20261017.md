@@ -61,3 +61,10 @@ any model output can affect care or suppress an alarm.
 
 Until that acceptance evidence exists, the bridge remains a **research dry
 run** and should not be wired to the production verdict topic.
+
+
+## Supplemental twelve-bed protocol replay
+
+The published [twelve-bed synthetic replay](../tests/test_twelve_bed_replay.py) checks 24 overlapping 10-second windows at five-second hops across B01–B12, all five monitor alarm codes, missing PPG, bed isolation, and a one-bed gap that does not reset the other eleven beds. The [automated protocol run #3](https://github.com/ADI238IND/sentinelward-ml/actions/runs/39014438315) passed all 21 dependency-free checks on the published source. Earlier workflow runs failed while the GitHub web editor had saved empty workflow/example files; those files were corrected before run #3.
+
+This supplemental test is outside the unchanged 65-file handoff ZIP. It checks schema and routing behavior, not held-out model accuracy, clinical safety, or the independently labelled ward acceptance replay. The live deployment gate remains blocked until the lead supplies the live-system repository, authenticated stream, and representative labelled replay.
