@@ -1,5 +1,8 @@
 # SentinelWard ML research handoff
 
+**Critical M6 correction:** The bundled M6 artifact monitors batch ECG–PPG distribution shift. It does **not** implement the arterial blood-pressure drift detector in the [lead’s M6 design](https://github.com/adityavijay3659-sketch/SentinelWard/blob/main/docs/m6-design.md): it has no ART/NIBP inputs or per-bed five-second score. Treat it as an exploratory waveform monitor, not a live M6 component or an input to the six-model verdict. See the [integration validation report](results/INTEGRATION_VALIDATION_20261017.md) for the model-by-model release gates.
+
+
 The repository contains M1–M4 notebooks, saved artifacts, and offline inference adapters. The [complete updated research handoff](SentinelWard_M1-M4_M6_D_M5-review_20261017.zip) also contains the M6 drift monitor, D decision engine, checked wrappers, tests, and M5 external-source review. Download and extract that ZIP for the latest complete source tree; the M6 and D files are bundled there rather than expanded in this GitHub tree. Kartik's M5 source and model remain in his [separate repository](https://github.com/kartikDevS/IBM_Datathon).
 
 - **M1:** whole-record, 12-lead ECG quality classification (Challenge 2011).
