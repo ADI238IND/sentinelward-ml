@@ -17,3 +17,6 @@ For current tree installation and M1–M4 calls, see [INTEGRATION.md](INTEGRATIO
 ## Reproduction
 
 The [notebooks](notebooks/) document training and audits. The [results](results/) folder contains model cards and benchmark summaries. Original datasets, derived waveforms, and event-level predictions are excluded from Git. Model artifacts in [models](models/) are for trusted-source loading only. Reported train/validation/test splits are record-disjoint; patient-disjointness is not established by record IDs alone.
+
+
+The [twelve-bed synthetic protocol test](tests/test_twelve_bed_replay.py) and its [passing automated run](https://github.com/ADI238IND/sentinelward-ml/actions/runs/39014438315) check routing and fail-closed behavior. They do not replace the independently labelled live-ward acceptance replay described in the [integration validation report](results/INTEGRATION_VALIDATION_20261017.md).
