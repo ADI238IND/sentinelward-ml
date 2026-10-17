@@ -1,0 +1,29 @@
+{
+  "source": "https://api.vitaldb.net/",
+  "date_checked": "2026-10-17",
+  "method": "Read-only inspection of the official /cases, /trks, and case-10 FHIR Observation endpoints",
+  "case_count": 6388,
+  "track_presence_case_counts": {
+    "SNUADC/ART": 3645,
+    "Solar8000/NIBP_MBP": 5763,
+    "Solar8000/ART_MBP": 3724,
+    "SNUADC/ART_and_Solar8000/NIBP_MBP": 3035,
+    "Solar8000/ART_MBP_and_Solar8000/NIBP_MBP": 3106
+  },
+  "case_10_sample": {
+    "nibp_mbp_fhir_chunks": 349,
+    "first_chunk_period_ms": 1000,
+    "first_chunk_contains_repeated_displayed_116_mmhg": true,
+    "art_fhir_chunks": 350,
+    "first_art_chunk_sample_count": 30000,
+    "first_art_chunk_period_ms": 2,
+    "first_art_chunk_plausible_decoding_verified": false
+  },
+  "claims_not_supported": [
+    "usable synchronized paired windows for all track-positive cases",
+    "exact cuff measurement timestamps from repeated displayed values",
+    "arterial-sensor-drift labels or accuracy",
+    "ICU or target-ward generalization",
+    "a calibrated live M6 score"
+  ]
+}
