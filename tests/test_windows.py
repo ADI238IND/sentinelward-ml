@@ -40,6 +40,34 @@ class VitalsWindowTest(unittest.TestCase):
             self.assertIsNone(builder.ingest(vitals(second, alarm=alarm if second == 3 else None)))
         self.assertEqual(builder.ingest(vitals(9))["monitor_alarms"], [alarm])
 
+    def test_input_buffer_mutation_cannot_change_pending_window(self):
+        builder = VitalsWindowAssembler()
+        first = vitals(0)
+        builder.ingest(first)
+        first["ecg"][0] = float("nan")
+        first["ppg"][0] = 9.0
+        for second in range(1, 9):
+            builder.ingest(vitals(second))
+        window = builder.ingest(vitals(9))
+        self.assertEqual(window["ecg"][0], 0.0)
+        self.assertIsNone(window["ppg"][0])
+        self.assertFalse(window["ppg_valid"][0])
+
+    def test_interleaved_beds_remain_isolated(self):
+        builder = VitalsWindowAssembler()
+        outputs = []
+        for second in range(10):
+            for bed, device in (("B01", "MON-01"), ("B02", "MON-02")):
+                message = vitals(second, bed=bed, device=device)
+                if bed == "B02" and second == 4:
+                    message["monitor_alarm"] = {"code": "ASYSTOLE", "priority": "high"}
+                output = builder.ingest(message)
+                if output is not None:
+                    outputs.append(output)
+        self.assertEqual([item["bed_id"] for item in outputs], ["B01", "B02"])
+        self.assertEqual(outputs[0]["monitor_alarms"], [])
+        self.assertEqual(outputs[1]["monitor_alarms"][0]["code"], "ASYSTOLE")
+
     def test_gap_requires_new_complete_window(self):
         builder = VitalsWindowAssembler()
         for second in range(5):
@@ -73,7 +101,7 @@ class VitalsWindowTest(unittest.TestCase):
         for change in ({"ecg": [0.0] * 124}, {"ecg": [float("nan")] * 125},
                        {"ecg": [True] * 125},
                        {"monitor_alarm": {"code": "UNKNOWN", "priority": "high"}},
-                       {"fs": 250}, {"ts": START + 1}):
+                       {"fs": 250}, {"ts": START + 1}, {"v": True}):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 builder.ingest(vitals(0) | change)
 
