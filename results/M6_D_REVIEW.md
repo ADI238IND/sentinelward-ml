@@ -1,5 +1,9 @@
 # M6 and D integration review — 16 October 2026
 
+**17 October correction (supersedes the M6 interpretation below):** The Drive M6 artifact measures ECG–PPG batch distribution shift. The [lead’s M6 design](https://github.com/adityavijay3659-sketch/SentinelWard/blob/main/docs/m6-design.md) instead requires ART/NIBP arterial blood-pressure sensor-drift detection, including a per-bed five-second score and genuine-hypotension safety evaluation. The saved artifact addresses a different target and must not be used as live M6. Kartik’s M5 baseline is now available in a separate repository and is reviewed in [M5_EXTERNAL_REVIEW.md](M5_EXTERNAL_REVIEW.md). The remaining live evidence is tracked in [REMAINING_WORK.md](REMAINING_WORK.md).
+
+
+
 ## Verified package contents
 
 The user-supplied Drive archives were inspected, extracted under `components/`,
