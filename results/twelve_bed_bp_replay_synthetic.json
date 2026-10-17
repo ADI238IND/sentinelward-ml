@@ -1,0 +1,76 @@
+{
+  "beds": 12,
+  "bp_baseline_minutes": 15,
+  "bp_postbaseline_windows_per_bed": 60,
+  "emergency_verdicts": 10,
+  "fixture": "synthetic research only",
+  "gap_bed": "B07",
+  "gap_bed_bp_window_missing": 200,
+  "gap_bed_vitals_windows": 1,
+  "m6_calibrated_scores": 0,
+  "research_verdicts": 34,
+  "scenario_evidence": {
+    "B01": {
+      "emergency_compatible": false,
+      "gap_mmhg": 15.0,
+      "inputs_sufficient": true,
+      "page_hinkley": 775.4400252644632,
+      "score": null,
+      "shape_ratio": 1.0
+    },
+    "B02": {
+      "emergency_compatible": true,
+      "gap_mmhg": 0.0,
+      "inputs_sufficient": true,
+      "page_hinkley": 0.0,
+      "score": null,
+      "shape_ratio": 1.0
+    },
+    "B03": {
+      "emergency_compatible": false,
+      "gap_mmhg": null,
+      "inputs_sufficient": false,
+      "page_hinkley": null,
+      "score": null,
+      "shape_ratio": null
+    },
+    "B04": {
+      "inputs_sufficient": false,
+      "reason": "ART is flat or too damped for reliable MAP evidence",
+      "score": null
+    },
+    "B05": {
+      "emergency_compatible": false,
+      "gap_mmhg": 0.0,
+      "inputs_sufficient": true,
+      "page_hinkley": 0.0,
+      "score": null,
+      "shape_ratio": 0.3888888888888886
+    },
+    "B06": {
+      "emergency_compatible": false,
+      "gap_mmhg": 15.0,
+      "inputs_sufficient": true,
+      "page_hinkley": 409.49080849040433,
+      "score": null,
+      "shape_ratio": 1.0
+    },
+    "B07": {
+      "emergency_compatible": false,
+      "gap_mmhg": 0.0,
+      "inputs_sufficient": false,
+      "page_hinkley": null,
+      "score": null,
+      "shape_ratio": null
+    },
+    "B08": {
+      "emergency_compatible": false,
+      "gap_mmhg": 0.0,
+      "inputs_sufficient": true,
+      "page_hinkley": 0.0,
+      "score": null,
+      "shape_ratio": 1.0
+    }
+  },
+  "vitals_windows": 34
+}
