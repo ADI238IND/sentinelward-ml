@@ -14,7 +14,7 @@ MODEL_TARGETS = {
     "M2": "true_vt_alarm",
     "M3": "synthetic_attack_window",
     "M4": "synthetic_replay_similarity",
-    "M5": None,  # No M5 package or positive-class definition is supplied.
+    "M5": None,  # External asynchronous event has no locked per-window alignment.
     "M6": None,  # Batch metric, not a live per-bed score.
 }
 ALARM_TYPES = frozenset({"ASYSTOLE", "BRADY", "TACHY", "VTACH", "VFIB"})
