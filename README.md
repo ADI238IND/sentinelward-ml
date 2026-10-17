@@ -1,5 +1,9 @@
 # SentinelWard ML research handoff
 
+The [public VitalDB feasibility audit](results/M6_VITALDB_FEASIBILITY_20261017.md) and [three-cell Colab notebook](notebooks/05_m6_vitaldb_feasibility.ipynb) now provide a patient-disjoint ART/NIBP data path. The twelve-case waveform stage is still pending; it does not provide a calibrated or live M6 score.
+
+
+
 The [M6 blood-pressure research adapter and synthetic twelve-bed replay](results/M6_BP_RESEARCH.md) are now runnable locally. They generate ART/NIBP evidence while deliberately withholding a calibrated M6 score. The [replay source](examples/twelve_bed_bp_replay.py) and [synthetic result](results/twelve_bed_bp_replay_synthetic.json) do not replace a labelled live-ward replay or complete the lead-specified M6.
 
 
