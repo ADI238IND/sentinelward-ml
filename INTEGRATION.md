@@ -9,6 +9,10 @@ The four saved models can now be loaded with one Python class. This is an
 **offline research interface**, not a patient-facing alarm service. Every
 artifact is SHA-256 checked against `models/manifest.json` before it is
 deserialized. Never load model files supplied by an untrusted caller.
+Use the extracted [complete handoff ZIP](SentinelWard_M1-M4_M6_D_M5-review_20261017.zip)
+as the working directory for the commands below. The browsable GitHub tree
+omits the M6 and D component files; the full 31-file integrity check and
+M6 wrapper require the extracted package.
 
 ## Install and call
 
