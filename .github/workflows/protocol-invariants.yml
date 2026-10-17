@@ -8,11 +8,14 @@ on:
       - sentinelward_ml/windows.py
       - sentinelward_ml/live_contract.py
       - sentinelward_ml/m5_external.py
+      - sentinelward_ml/m6_bp_research.py
       - examples/live_dry_run.py
+      - examples/twelve_bed_bp_replay.py
       - tests/test_windows.py
       - tests/test_live_contract.py
       - tests/test_m5_external.py
       - tests/test_twelve_bed_replay.py
+      - tests/test_m6_bp_research.py
   workflow_dispatch:
 
 jobs:
@@ -29,4 +32,4 @@ jobs:
           python -m unittest discover -s tests -p test_live_contract.py -v
           python -m unittest discover -s tests -p test_m5_external.py -v
           python -m unittest discover -s tests -p test_twelve_bed_replay.py -v
-
+          python -m unittest discover -s tests -p test_m6_bp_research.py -v
